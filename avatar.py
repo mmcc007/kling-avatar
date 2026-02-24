@@ -115,7 +115,8 @@ def main():
     parser.add_argument("--image", required=True, help="Portrait image path or URL (JPG/PNG)")
     parser.add_argument("--audio", help="Audio file path or URL (MP3/WAV) — skip TTS if provided")
     parser.add_argument("--text", help="Text to speak (requires --voice-id and ELEVENLABS_KEY)")
-    parser.add_argument("--voice-id", help="ElevenLabs voice ID for TTS")
+    default_voice_id = os.environ.get("ELEVENLABS_VOICE_ID", "")
+    parser.add_argument("--voice-id", default=default_voice_id, help="ElevenLabs voice ID for TTS (default: $ELEVENLABS_VOICE_ID)")
     parser.add_argument("--prompt", default=".", help="Animation style prompt (e.g. 'Speak with energy and passion')")
     parser.add_argument("--output", default="output.mp4", help="Output video path (default: output.mp4)")
     args = parser.parse_args()
@@ -125,7 +126,7 @@ def main():
         sys.exit(1)
 
     if args.text and not args.voice_id:
-        print("Error: --text requires --voice-id")
+        print("Error: --text requires --voice-id (or set ELEVENLABS_VOICE_ID in .env)")
         sys.exit(1)
 
     audio_path = args.audio
