@@ -44,17 +44,23 @@ def clone_voice(name: str, files: list[str], description: str = ""):
         print(f"  {f} ({size_mb:.1f} MB)")
 
     client = ElevenLabs(api_key=api_key)
-    voice = client.voices.ivc.create(
-        name=name,
-        files=files,
-        description=description or None,
-    )
+    file_handles = [open(f, "rb") for f in files]
+    try:
+        voice = client.voices.ivc.create(
+            name=name,
+            files=file_handles,
+            description=description or None,
+        )
+    finally:
+        for fh in file_handles:
+            fh.close()
 
+    voice_id = voice.voice_id
     print(f"\nVoice cloned successfully!")
-    print(f"  Name:     {voice.name}")
-    print(f"  Voice ID: {voice.voice_id}")
+    print(f"  Name:     {name}")
+    print(f"  Voice ID: {voice_id}")
     print(f"\nAdd to your .env:")
-    print(f"  ELEVENLABS_VOICE_ID={voice.voice_id}")
+    print(f"  ELEVENLABS_VOICE_ID={voice_id}")
 
 
 def main():
