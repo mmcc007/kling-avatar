@@ -76,12 +76,29 @@ python3 avatar.py \
 
 ### With animation prompt
 
-The `--prompt` parameter guides the animation style (e.g. emotion, movement):
+The `--prompt` parameter guides the animation style. Prompts are stored in `prompts.yaml` for reuse.
 
+**Talking** (use when avatar is speaking):
 ```bash
---prompt "Speak calmly and confidently"
---prompt "Energetic, expressive gestures"
+source .env
+python3 avatar.py \
+  --image pele.png \
+  --audio speech.mp3 \
+  --prompt "Confident, warm, and relaxed demeanor. Occasional natural hand gestures to emphasise speech — right hand rises to chest height then returns to hip. Subtle weight shift side to side. Soccer ball remains still under right foot throughout. Engaged eye contact with camera. Expressive micro-expressions matching audio tone. Static full-body portrait shot, black background, soft warm light." \
+  --output pele_talking.mp4
 ```
+
+**Listening** (use when avatar is listening/nodding):
+```bash
+source .env
+python3 avatar.py \
+  --image pele.png \
+  --audio ambient_or_silence.mp3 \
+  --prompt "Attentive and thoughtful expression, mouth closed. Slow nodding twice as if absorbing what is being said. Faint warm smile forms gradually. Left hand shifts slightly then settles at hip. Subtle forward lean of interest then eases back. Soccer ball stays still under right foot. Eyes focused and calm, occasional slow blink. Static full-body portrait shot, black background, soft warm light." \
+  --output pele_listening.mp4
+```
+
+These prompts are designed for interactive avatar training videos where you need both talking and listening clips. See `prompts.yaml` for the full library.
 
 ### Trim audio first (save cost)
 
@@ -93,11 +110,34 @@ ffmpeg -ss 0 -t 30 -i input.mp3 clip.mp3
 ffmpeg -ss 60 -t 30 -i input.mp3 clip.mp3
 ```
 
+## Cloning a Voice with ElevenLabs
+
+1. Go to [elevenlabs.io](https://elevenlabs.io) → **Voices** → **Add Voice** → **Voice Clone**
+2. Choose **Instant Voice Clone**
+3. Upload your audio samples:
+   - Minimum: 1 minute of clean speech
+   - Recommended: 3–5 minutes for better quality
+   - Must be a single speaker, minimal background noise/music
+   - MP3 or WAV format
+4. Name your voice and click **Create**
+5. Copy the **Voice ID** (see below) and add it to your `.env` as `ELEVENLABS_VOICE_ID`
+
 ## Finding your ElevenLabs Voice ID
 
+Option 1 — via script:
+```bash
+source .env && python3 -c "
+from elevenlabs import ElevenLabs
+client = ElevenLabs(api_key='$ELEVENLABS_KEY')
+for v in client.voices.get_all().voices:
+    print(v.voice_id, v.name)
+"
+```
+
+Option 2 — via dashboard:
 1. Go to [elevenlabs.io](https://elevenlabs.io) → Voices
 2. Click your cloned voice
-3. Copy the Voice ID from the URL or voice settings
+3. Copy the Voice ID from the voice settings panel
 
 ## Pricing
 

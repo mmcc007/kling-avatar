@@ -1,0 +1,20 @@
+# Avatar animation prompts for Kling AI
+# Use with: python3 avatar.py --prompt "$(yq '.prompts.talking' prompts.yaml)"
+# Or just copy-paste the prompt text into --prompt
+
+prompts:
+  talking: >
+    Confident, warm, and relaxed demeanor. Occasional natural hand
+    gestures to emphasise speech — right hand rises to chest height
+    then returns to hip. Subtle weight shift side to side. Soccer ball
+    remains still under right foot throughout. Engaged eye contact
+    with camera. Expressive micro-expressions matching audio tone.
+    Static full-body portrait shot, black background, soft warm light.
+
+  listening: >
+    Attentive and thoughtful expression, mouth closed. Slow nodding
+    twice as if absorbing what is being said. Faint warm smile forms
+    gradually. Left hand shifts slightly then settles at hip. Subtle
+    forward lean of interest then eases back. Soccer ball stays still
+    under right foot. Eyes focused and calm, occasional slow blink.
+    Static full-body portrait shot, black background, soft warm light.
