@@ -29,25 +29,38 @@ cp .env.example .env
 |-----|----------------|
 | `FAL_KEY` | [fal.ai/dashboard](https://fal.ai/dashboard) |
 | `ELEVENLABS_KEY` | [elevenlabs.io](https://elevenlabs.io) → Profile → API Keys |
+| `ELEVENLABS_VOICE_ID` | ElevenLabs → Voices → your cloned voice → Voice ID |
 
 ### .env
 
 ```
 FAL_KEY=your_fal_key_here
 ELEVENLABS_KEY=your_elevenlabs_key_here
+ELEVENLABS_VOICE_ID=your_voice_id_here
 ```
 
 ## Usage
 
 ### Full pipeline (text → voice → video)
 
+With `ELEVENLABS_VOICE_ID` set in `.env`, no need to pass `--voice-id`:
+
 ```bash
 source .env
 python3 avatar.py \
   --image pele.png \
   --text "Hello, I am Pelé. Football is the beautiful game." \
-  --voice-id <your_elevenlabs_voice_id> \
   --prompt "Speak with energy and passion" \
+  --output pele.mp4
+```
+
+Or override the voice explicitly:
+
+```bash
+python3 avatar.py \
+  --image pele.png \
+  --text "Hello, I am Pelé." \
+  --voice-id <other_voice_id> \
   --output pele.mp4
 ```
 
