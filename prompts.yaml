@@ -1,6 +1,34 @@
-# Avatar animation prompts for Kling AI
-# Use with: python3 avatar.py --prompt "$(yq '.prompts.talking' prompts.yaml)"
-# Or just copy-paste the prompt text into --prompt
+# Avatar animation prompts and speech scripts for Kling AI / ElevenLabs
+#
+# Animation prompts — use with --prompt flag:
+#   python3 avatar.py --image pele.png --text "..." --prompt "$(yq '.prompts.talking' prompts.yaml)"
+#
+# Speech scripts — use with --text flag:
+#   python3 avatar.py --image pele.png --text "$(yq '.scripts.reflecting_on_football' prompts.yaml)"
+
+# ── Speech Scripts ────────────────────────────────────────────────────────────
+
+scripts:
+  reflecting_on_football: >
+    Football is not just a game. It is life. When I was a boy, I had nothing —
+    no shoes, no money. But I had a ball. And with that ball, I had everything.
+    The beautiful game gave me the world.
+
+  motivational: >
+    People always ask me — what is the secret? There is no secret. You work.
+    You believe. You never stop. Talent is a gift, but dedication — that is a
+    choice. Make that choice every single day.
+
+  short_punchy: >
+    I scored over a thousand goals. But the goal I am most proud of?
+    Getting up every time I fell.
+
+  warm_personal: >
+    My father cried when Brazil lost the World Cup. I was just a boy. I told
+    him — don't cry. I will win it for you. Eight years later, I did. Never
+    underestimate what a child with a dream can do.
+
+# ── Animation Prompts ─────────────────────────────────────────────────────────
 
 prompts:
   talking: >

@@ -22,7 +22,7 @@ image + audio  →  fal.ai Kling Avatar v2  →  MP4
 ## Setup
 
 ```bash
-pip install fal-client elevenlabs requests
+pip install fal-client elevenlabs requests mutagen
 cp .env.example .env
 # Fill in your API keys in .env
 ```
@@ -103,6 +103,26 @@ python3 avatar.py \
 ```
 
 These prompts are designed for interactive avatar training videos where you need both talking and listening clips. See `prompts.yaml` for the full library.
+
+### Cost estimate & confirmation
+
+Before submitting, the script shows the audio duration and estimated cost and asks for confirmation:
+
+```
+  Audio duration : 4m 27s (267.0s)
+  Estimated cost : ~$15.01 USD
+
+  Proceed? [y/N]
+```
+
+To skip the prompt (e.g. in scripts):
+```bash
+python3 avatar.py --image pele.png --audio speech.mp3 --yes
+```
+
+### Cancelling a job
+
+Press **Ctrl+C** while the job is running. The script will call the fal.ai cancel API and print the status. You can also verify cancellation on the [fal.ai dashboard](https://fal.ai/dashboard).
 
 ### Trim audio first (save cost)
 
