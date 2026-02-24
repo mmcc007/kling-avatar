@@ -2,6 +2,10 @@
 
 Generate talking head videos from a portrait image using Kling AI Avatar v2 (via fal.ai) and ElevenLabs voice cloning.
 
+## Why fal.ai instead of the official Kling API?
+
+The official Kling API requires a **$4,200 minimum upfront purchase** (prepaid resource package, valid 90 days). fal.ai wraps the same Kling Avatar v2 model with true pay-as-you-go pricing (~$0.056/sec), no minimum spend, and a simpler interface that accepts image + audio directly — no intermediate video generation step needed.
+
 ## Pipeline
 
 ```
@@ -112,15 +116,33 @@ ffmpeg -ss 60 -t 30 -i input.mp3 clip.mp3
 
 ## Cloning a Voice with ElevenLabs
 
+### Via script (recommended)
+
+```bash
+source .env
+python3 clone_voice.py --name "Pelé" --files sample1.mp3 sample2.mp3
+# Prints the Voice ID — add it to .env as ELEVENLABS_VOICE_ID
+```
+
+Multiple files or a glob:
+```bash
+python3 clone_voice.py --name "Pelé" --files samples/*.mp3 --description "Brazilian footballer"
+```
+
+### Via dashboard
+
 1. Go to [elevenlabs.io](https://elevenlabs.io) → **Voices** → **Add Voice** → **Voice Clone**
 2. Choose **Instant Voice Clone**
-3. Upload your audio samples:
-   - Minimum: 1 minute of clean speech
-   - Recommended: 3–5 minutes for better quality
-   - Must be a single speaker, minimal background noise/music
-   - MP3 or WAV format
+3. Upload your audio samples
 4. Name your voice and click **Create**
-5. Copy the **Voice ID** (see below) and add it to your `.env` as `ELEVENLABS_VOICE_ID`
+5. Copy the **Voice ID** and add it to your `.env` as `ELEVENLABS_VOICE_ID`
+
+### Tips for best results
+
+- Minimum 1 minute of audio (3–5 min recommended)
+- Single speaker only — no background music or noise
+- MP3 or WAV format
+- Varied speech works better than repeated phrases
 
 ## Finding your ElevenLabs Voice ID
 
