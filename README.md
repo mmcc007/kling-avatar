@@ -78,31 +78,52 @@ python3 avatar.py \
   --output pele.mp4
 ```
 
-### With animation prompt
+### Using prompts.yaml
 
-The `--prompt` parameter guides the animation style. Prompts are stored in `prompts.yaml` for reuse.
+All animation prompts and speech scripts are stored in `prompts.yaml`. Use `yq` to read them directly into the command line — no copy-pasting needed.
 
-**Talking** (use when avatar is speaking):
+Install yq:
+```bash
+pip install yq
+```
+
+**Run with a saved animation prompt:**
 ```bash
 source .env
 python3 avatar.py \
   --image pele.png \
   --audio speech.mp3 \
-  --prompt "Confident, warm, and relaxed demeanor. Occasional natural hand gestures to emphasise speech — right hand rises to chest height then returns to hip. Subtle weight shift side to side. Soccer ball remains still under right foot throughout. Engaged eye contact with camera. Expressive micro-expressions matching audio tone. Static full-body portrait shot, black background, soft warm light." \
+  --prompt "$(yq -r '.prompts.talking' prompts.yaml)" \
   --output pele_talking.mp4
 ```
 
-**Listening** (use when avatar is listening/nodding):
+**Run with a saved speech script + animation prompt (full pipeline):**
 ```bash
 source .env
 python3 avatar.py \
   --image pele.png \
-  --audio ambient_or_silence.mp3 \
-  --prompt "Attentive and thoughtful expression, mouth closed. Slow nodding twice as if absorbing what is being said. Faint warm smile forms gradually. Left hand shifts slightly then settles at hip. Subtle forward lean of interest then eases back. Soccer ball stays still under right foot. Eyes focused and calm, occasional slow blink. Static full-body portrait shot, black background, soft warm light." \
-  --output pele_listening.mp4
+  --text "$(yq -r '.scripts.motivational' prompts.yaml)" \
+  --prompt "$(yq -r '.prompts.talking' prompts.yaml)" \
+  --output pele_motivational.mp4
 ```
 
-These prompts are designed for interactive avatar training videos where you need both talking and listening clips. See `prompts.yaml` for the full library.
+**Available speech scripts** (`scripts.*` in `prompts.yaml`):
+
+| Key | Description | ~Duration |
+|-----|-------------|-----------|
+| `short_punchy` | "I scored over a thousand goals..." | ~5s |
+| `motivational` | "People always ask me — what is the secret?..." | ~11s |
+| `reflecting_on_football` | "Football is not just a game..." | ~10s |
+| `warm_personal` | "My father cried when Brazil lost the World Cup..." | ~13s |
+
+**Available animation prompts** (`prompts.*` in `prompts.yaml`):
+
+| Key | Use for |
+|-----|---------|
+| `talking` | Avatar speaking — hand gestures, eye contact, warm close |
+| `listening` | Avatar listening — nodding, steady gaze, forward lean |
+
+These are designed for interactive avatar training videos where you alternate talking and listening clips.
 
 ### Cost estimate & confirmation
 

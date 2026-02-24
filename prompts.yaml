@@ -19,6 +19,11 @@ scripts:
     You believe. You never stop. Talent is a gift, but dedication — that is a
     choice. Make that choice every single day.
 
+  motivational_pt: >
+    As pessoas sempre me perguntam — qual é o segredo? Não existe segredo.
+    Você trabalha. Você acredita. Você nunca desiste. O talento é um dom,
+    mas a dedicação — isso é uma escolha. Faça essa escolha todos os dias.
+
   short_punchy: >
     I scored over a thousand goals. But the goal I am most proud of?
     Getting up every time I fell.
@@ -32,17 +37,26 @@ scripts:
 
 prompts:
   talking: >
-    Confident, warm, and relaxed demeanor. Occasional natural hand
-    gestures to emphasise speech — right hand rises to chest height
-    then returns to hip. Subtle weight shift side to side. Soccer ball
-    remains still under right foot throughout. Engaged eye contact
-    with camera. Expressive micro-expressions matching audio tone.
-    Static full-body portrait shot, black background, soft warm light.
+    Confident, warm and relaxed demeanor. Almost continuous direct
+    eye contact with camera throughout, eyes only briefly breaking
+    away naturally before returning to camera. Occasional natural
+    hand gestures to emphasise speech — right hand rises to chest
+    height, fingers spread to emphasise a point, then lowers back
+    to hip. Subtle weight shift side to side. Soccer ball remains
+    still under right foot throughout. Expressive micro-expressions
+    matching audio tone.
+    As speech concludes, raised hand lowers slowly and settles
+    naturally at hip, weight centres, shoulders relax, mouth closes
+    into a calm, warm smile, eye contact holds steady with camera
+    until fully still.
+    Static full-body portrait shot, soft warm light.
 
   listening: >
-    Attentive and thoughtful expression, mouth closed. Slow nodding
-    twice as if absorbing what is being said. Faint warm smile forms
-    gradually. Left hand shifts slightly then settles at hip. Subtle
-    forward lean of interest then eases back. Soccer ball stays still
-    under right foot. Eyes focused and calm, occasional slow blink.
-    Static full-body portrait shot, black background, soft warm light.
+    Attentive and thoughtful expression, mouth closed. Almost
+    continuous direct eye contact with camera, gaze steady and
+    engaged with only brief natural breaks before returning. Slow
+    nodding twice as if absorbing what is being said. Faint warm
+    smile forms gradually. Left hand shifts slightly then settles
+    at hip. Subtle forward lean of interest then eases back.
+    Soccer ball stays still under right foot throughout.
+    Static full-body portrait shot, soft warm light.
